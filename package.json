@@ -1,0 +1,23 @@
+{
+  "name": "jb",
+  "version": "1.0.0",
+  "description": "This repo contains solidity code for Merger and Acquisition Platform on Blockchain.",
+  "main": "truffle-config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YogeshLaxman/MergerAndAcquistion.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/YogeshLaxman/MergerAndAcquistion/issues"
+  },
+  "homepage": "https://github.com/YogeshLaxman/MergerAndAcquistion#readme",
+  "dependencies": {
+    "web3": "github:ethereum/web3.js"
+  },
+  "devDependencies": {}
+}

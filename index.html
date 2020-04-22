@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="main.css">
+<!--    <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@0.18.2/dist/web3.min.js"></script>-->
+
+        <script src="https://cdn.jsdelivr.net/npm/web3@0.20.7/dist/web3.min.js"></script>
+
+</head>
+<body>
+<div class="container">
+    <h1><bold>Merger and Acquistion</h1></bold>
+    <label for="timeInput" class="col-lg-2 control-label"> <b>Enter End Time For M&A Process <b></label>
+    <input id="timeInputData" type="text">
+    <button id="button1"><b> Start M & A Process</b></button>
+
+    <label for="accountId" class="col-lg-2 control-label"> <b> Account Id </b></label>
+    <input id="accountId" type="text">
+
+    <label for="amnt" class="col-lg-2 control-label"> <b> Amount </b></label>
+    <input id="amnt" type="text">
+
+    <button id="button2"> <b>Place Offer </b></button>
+    <button id="button3"> <b>End Buying Period <b></button>
+
+</div>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script type="text/javascript" src="main.js"></script>
+
+<script>
+if(typeof web3 !== 'undefined')
+{
+ web3 = new Web3(web3.currentProvider);
+ }
+ else
+{
+ // set the provider you want from Web3.providers
+web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+ }
+ web3.eth.defaultAccount = web3.eth.accounts[0];
+ var mAndA = web3.eth.contract([
+	{
+		"inputs": [],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "message",
+				"type": "string"
+			}
+		],
+		"name": "Message",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "logMinimum",
+		"type": "event"
+	},
+	{
+		"inputs": [],
+		"name": "acquisitionEndDate",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "closeDeal",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "highestProposedValue",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "highestReceivedProposalAddress",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "minimumProposalAmount",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "negotiateDeal",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "placeInitialBid",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "sellerAddress",
+		"outputs": [
+			{
+				"internalType": "address payable",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "minValue",
+				"type": "uint256"
+			}
+		],
+		"name": "setMinimumProposalAmount",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "startNegotiation",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "timeInMins",
+				"type": "uint256"
+			}
+		],
+		"name": "startSale",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "withdraw",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	}
+]).at('0x0ece4215D45E44A403c13A230523bBc867255445');
+<!--var accounts = web3.eth.getAccounts();-->
+
+$("#button2").click(function() {
+var val = 0;
+var amnt = 0;
+val = $("#accountId").val();
+amnt = $("#amnt").val();
+amnt = amnt * 10 ** 18;
+var addr = web3.eth.accounts[val];
+mAndA.placeInitialBid({'from': addr , 'value': amnt});
+});
+</script>
+</body>
+</html>
